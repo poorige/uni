@@ -3,7 +3,7 @@ download_node() {
 
   sudo apt update -y && sudo apt upgrade -y
   sudo apt-get install make build-essential unzip lz4 gcc git jq -y
-  
+
   sudo apt install docker.io -y
 
   sudo systemctl start docker
@@ -54,6 +54,10 @@ stop_node() {
   sudo docker-compose -f "${HOMEDIR}/unichain-node/docker-compose.yml" down
 }
 
+display_private_key() {
+  echo -e 'Ваш приватник: \n' && cat geth-data/geth/nodekey
+}
+
 exit_from_script() {
   exit 0
 }
@@ -66,7 +70,9 @@ while true; do
     echo "4. Посмотреть логи Unichain (OP)"
     echo "5. Посмотреть логи Unichain"
     echo "6. Остановить ноду"
-    echo -e "7. Выйти из скрипта\n"
+    echo "7. Посмотреть приватный ключ"
+    echo -e "8. Выйти из скрипта\n"
+    echo -e '\n\n Если вы захотите остановить логи ноды, то нажмите CTRL+C\nДля того чтобы зайти обратно в скрипт: bash unichain.sh\n'
     read -p "Выберите пункт меню: " choice
 
     case $choice in
@@ -89,6 +95,9 @@ while true; do
         stop_node
         ;;
       7)
+        display_private_key
+        ;;
+      8)
         exit_from_script
         ;;
       *)
