@@ -55,7 +55,8 @@ stop_node() {
 }
 
 display_private_key() {
-  echo -e 'Ваш приватник: \n' && cat geth-data/geth/nodekey
+  cd $HOME
+  echo -e 'Ваш приватник: \n' && cat unichain-node/geth-data/geth/nodekey
 }
 
 exit_from_script() {
@@ -72,7 +73,7 @@ while true; do
     echo "6. Остановить ноду"
     echo "7. Посмотреть приватный ключ"
     echo -e "8. Выйти из скрипта\n"
-    echo -e '\n\n Если вы захотите остановить логи ноды, то нажмите CTRL+C\nДля того чтобы зайти обратно в скрипт: bash unichain.sh\n'
+    echo -e '\nЕсли вы захотите остановить логи ноды, то нажмите CTRL+C\nДля того чтобы зайти обратно в скрипт: bash unichain.sh\n'
     read -p "Выберите пункт меню: " choice
 
     case $choice in
